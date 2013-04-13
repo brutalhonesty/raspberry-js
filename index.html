@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<!--head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.0/css/bootstrap-combined.min.css"/>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(function() {
+			var socket = io.connect('http://localhost:8080');
+			socket.on('news', function (data) {
+				console.log(data);
+				socket.emit('my other event', { my: 'data' });
+			});
+			$('#right').on('click', function() {
+				console.log('right button');
+				socket.emit('moveLeft', { value: true });
+			});
+		});
+	</script>
+</head>
+<body>
+<div><button id="right">Right</button></div>
+</body>
+</html-->
+<html>
+	<head>
+		<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/socket.io.min.js"></script>
+	</head>
+	<body>
+		<h2>UI Interface</h2>
+		<div class="container" id="mainContainer">
+			<button type="submit" class="btn" id="moveLeft">Left</button>
+			<button type="submit" class="btn" id="moveRight">Right</button>
+		</div>
+		<div class="container" id="sliderContainer">
+			<h4>Speed Slider</h4>
+			<input id="speedSlider" type="range" min="0" max="500" />
+			<p class="note">Current value: <span id="speedCurrentValue">0</span></p>
+			<h4>Duration Slider</h4>
+			<input id="durationSlider" type="range" min="0" max="500" />
+			<p class="note">Current value: <span id="durationCurrentValue">0</span> seconds</p>
+		</div>
+	</body>
+</html>
