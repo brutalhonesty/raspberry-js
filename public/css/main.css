@@ -1,8 +1,8 @@
-div#mainContainer{
+div#nameContainer{
     float: left;
+    display: inline;
 }
-div#sliderContainer{
-    float: right;
+div#cubeContainer{
 }
 
 div#cubeContainer {

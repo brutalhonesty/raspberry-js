@@ -1,13 +1,19 @@
 {
-  "name": "application-name",
+  "name": "desert-raspberries",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
-    "start": "node app"
+    "main": "public/js/main.js",
+    "app": "app.js",
+    "bootstrap": "public/js/bootstrap.min.js",
+    "jquery": "public/js/jquery.min.js",
+    "socket.io": "public/js/socket.io.min.js"
   },
   "dependencies": {
     "express": "3.0.5",
-    "socket.io": "*"
+    "socket.io": "0.9.10",
+    "http": "0.0.0",
+    "sys": "0.0.1"
   }
 }
 
