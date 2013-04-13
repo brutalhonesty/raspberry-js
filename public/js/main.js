@@ -25,4 +25,18 @@ $(function () {
 	    };
 	    document.getElementById('cube').style[prop] = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
 	});
+
+	socket.on('connect', function () {
+		console.log('Socket connected');
+		socket.on('moveLeft', function (data) {
+			console.log('Socket received move left command');
+			yAngle -= 90;
+	    	document.getElementById('cube').style[prop] = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
+		});
+		socket.on('moveRight', function (data) {
+			console.log('Socket received move right command');
+			yAngle += 90;
+	    	document.getElementById('cube').style[prop] = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
+		});
+	});
 });

@@ -44,8 +44,10 @@ var io = io.listen(server, {
 io.sockets.on('connection', function (socket) {
 	socket.on('moveLeft', function (data) {
 		moveLeft();
+		socket.broadcast.emit('moveLeft', {});
 	});
 	socket.on('moveRight', function (data) {
 		moveRight();
+		socket.broadcast.emit('moveRight', {});
 	});
 });
