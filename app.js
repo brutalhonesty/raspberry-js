@@ -30,11 +30,11 @@ app.get('/', function (req, res) {
 
 function puts(error, stdout, stderr) { sys.puts(stdout) }
 
-function moveLeft() {
+function moveLeft(duration) {
 	exec("ls -la", puts);
 }
 
-function moveRight() {
+function moveRight(duration) {
 	exec("ls -la", puts);
 }
 
@@ -53,11 +53,11 @@ var io = io.listen(server, { log: false });
 io.sockets.on('connection', function (socket) {
   socket.on('moveLeft', function (data) {
     console.log('move left: ' + JSON.stringify(data));
-    moveLeft();
+    moveLeft(data.duration);
   });
   socket.on('moveRight', function (data) {
     console.log('move right: ' + JSON.stringify(data));
-    moveRight();
+    moveRight(data.duration);
   });
   socket.on('speedSlider', function (data) {
     console.log('speedSlider: ' + JSON.stringify(data));
