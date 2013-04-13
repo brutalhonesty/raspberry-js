@@ -5,7 +5,7 @@ div#sliderContainer{
     float: right;
 }
 
-#experiment {
+div#cubeContainer {
   -webkit-perspective: 800;
   -webkit-perspective-origin: 50% 200px;
 
@@ -13,15 +13,15 @@ div#sliderContainer{
   -moz-perspective-origin: 50% 200px;
 }
 
-#cube {
+div#cube {
   position: relative;
   margin: 100px auto 0;
   height: 400px;
   width: 400px;
-  -webkit-transition: -webkit-transform 2s linear;
+  -webkit-transition: -webkit-transform 6s linear;
   -webkit-transform-style: preserve-3d;
 
-  -moz-transition: -moz-transform 2s linear;
+  -moz-transition: -moz-transform 6s linear;
   -moz-transform-style: preserve-3d;
 }
 

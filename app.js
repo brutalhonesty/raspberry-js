@@ -1,71 +1,51 @@
-
-/**
- * Module dependencies.
- */
-
-var express = require('express')
-  , http = require('http')
-  , io = require('socket.io')
-  , sys = require('sys')
-  , exec = require('child_process').exec
-  , path = require('path');
+//Node Server File
+//Creates the server and listens for socket requests from the client.
+var express = require('express');
+var http = http = require('http');
+var io = require('socket.io');
+var sys = require('sys');
+var exec = require('child_process').exec;
+var path = require('path');
 
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 8080);
+	app.set('port', process.env.PORT || 8080);
 });
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
+app.get('/', function (request, result) {
+	result.sendfile(__dirname + '/index.html');
+	app.use(express.static(path.join(__dirname, 'public')));
 });
 
-//app.get('/', routes.index);
-//app.get('/users', user.list);
-
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
-  app.use(express.static(path.join(__dirname, 'public')));
-});
-
-function puts(error, stdout, stderr) { sys.puts(stdout) }
-
-function moveLeft(duration) {
-	exec("ls -la", puts);
+function puts(error, stdout, stderr) {
+	sys.print(stdout);
+	sys.print(stderr);
+	if(error !== null) {
+		console.log(error);
+	}
+}
+function moveLeft() {
+	exec("/usr/bin/python stepper-left.py", puts);
+	console.log("Moved left!");
 }
 
-function moveRight(duration) {
-	exec("ls -la", puts);
-}
-
-function speedSlider() {
-
-}
-
-function durationSlider() {
-
+function moveRight() {
+	exec("/usr/bin/python stepper-right.py", puts);
+	console.log("Moved right!");
 }
 var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log("Express server listening on port " + app.get('port'));
 });
-var io = io.listen(server, { log: false });
-
-io.sockets.on('connection', function (socket) {
-  socket.on('moveLeft', function (data) {
-    console.log('move left: ' + JSON.stringify(data));
-    moveLeft(data.duration);
-  });
-  socket.on('moveRight', function (data) {
-    console.log('move right: ' + JSON.stringify(data));
-    moveRight(data.duration);
-  });
-  socket.on('speedSlider', function (data) {
-    console.log('speedSlider: ' + JSON.stringify(data));
-    speedSlider();
-  });
-  socket.on('durationSlider', function (data) {
-    console.log('durationSlider: ' + JSON.stringify(data));
-    durationSlider();
-  });
+var io = io.listen(server, { 
+	log: false 
 });
 
+io.sockets.on('connection', function (socket) {
+	socket.on('moveLeft', function (data) {
+		moveLeft();
+	});
+	socket.on('moveRight', function (data) {
+		moveRight();
+	});
+});
