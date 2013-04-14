@@ -39,4 +39,7 @@ $(function () {
 	    	document.getElementById('cube').style[prop] = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
 		});
 	});
+	$("div#cube").swipright(function () {
+		console.log("Swipped right!");
+	});
 });
